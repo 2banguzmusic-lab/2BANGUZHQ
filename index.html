@@ -180,6 +180,27 @@
       margin: 0 10px;
       text-decoration: none;
     }
+        /* BUY BUTTON */
+    .buy-btn {
+      display: block;
+      margin-top: 12px;
+      padding: 12px;
+      text-align: center;
+      border-radius: 6px;
+      border: 1px solid #00B4FF;
+      color: #00B4FF;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(0,180,255,.4);
+      transition: 0.3s;
+    }
+
+    .buy-btn:hover {
+      background: #00B4FF;
+      color: black;
+      box-shadow: 0 0 30px #00B4FF;
+    }
+
   </style>
 </head>
 
@@ -202,12 +223,19 @@
 
     <div class="music-grid">
       <div class="track">
-        <h3>Track Title One</h3>
-        <audio controls style="width:100%;">
-          <source src="song1.mp3" type="audio/mpeg">
-        </audio>
-        <button>Buy for $1</button>
-      </div>
+  <h3>Track Title One</h3>
+
+  <audio controls style="width:100%;">
+    <source src="song1.mp3" type="audio/mpeg">
+  </audio>
+
+  <a 
+    href="https://buy.stripe.com/YOUR_PAYMENT_LINK"
+    target="_blank"
+    class="buy-btn">
+    💎 Buy for $1
+  </a>
+</div>
 
       <div class="track">
         <h3>Track Title Two</h3>
