@@ -304,6 +304,16 @@
   .then(() => console.log("🔥 Firestore connected"))
   .catch(err => console.error("❌ Firestore error:", err));
 </script>
+<script>
+  function trackStream(songTitle) {
+    db.collection("streams").add({
+      song: songTitle,
+      time: new Date()
+    })
+    .then(() => console.log("🎧 Stream tracked:", songTitle))
+    .catch(err => console.error("❌ Stream error:", err));
+  }
+</script>
 
 </body>
 </html>
