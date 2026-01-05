@@ -5,370 +5,168 @@
   <title>2BANGUZHQ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <style>
-    :root {
-      --black: #05070A;
-      --neon-blue: #00B4FF;
-      --cyan: #00F6FF;
-      --silver: #C9CCD6;
-      --steel: #1A1F2B;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body {
-      background: var(--black);
-      color: white;
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      background:
-        linear-gradient(rgba(5,7,10,.85), rgba(5,7,10,.95)),
-        url("https://images.unsplash.com/photo-1545420331-25b0f5b7f7e1?auto=format&fit=crop&w=1600&q=80");
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 40px;
-    }
-
-    .hero h1 {
-      font-size: 3.2rem;
-      letter-spacing: 4px;
-      color: var(--silver);
-      text-shadow: 0 0 20px var(--neon-blue);
-    }
-
-    .hero p {
-      margin-top: 15px;
-      font-size: 1.1rem;
-      color: var(--cyan);
-      opacity: 0.9;
-    }
-
-    .hero-buttons {
-      margin-top: 35px;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 14px 28px;
-      border: 1px solid var(--neon-blue);
-      background: transparent;
-      color: var(--neon-blue);
-      cursor: pointer;
-      font-size: 1rem;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: 0.3s;
-      box-shadow: 0 0 15px rgba(0,180,255,.3);
-    }
-
-    .btn:hover {
-      background: var(--neon-blue);
-      color: black;
-      box-shadow: 0 0 30px var(--neon-blue);
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 80px 8%;
-    }
-
-    h2 {
-      color: var(--silver);
-      margin-bottom: 30px;
-      text-shadow: 0 0 10px var(--neon-blue);
-    }
-
-    /* MUSIC */
-    .music-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-    }
-
-    .track {
-      background: var(--steel);
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      transition: 0.3s;
-    }
-
-    .track:hover {
-      border-color: var(--neon-blue);
-      box-shadow: 0 0 20px rgba(0,180,255,.3);
-    }
-
-    .track h3 {
-      margin-bottom: 10px;
-      color: var(--cyan);
-    }
-
-    .track button {
-      margin-top: 10px;
-      width: 100%;
-      padding: 10px;
-      background: transparent;
-      border: 1px solid var(--neon-blue);
-      color: var(--neon-blue);
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    /* VIDEO */
-    .video iframe {
-      width: 100%;
-      height: 420px;
-      border-radius: 10px;
-      border: none;
-      box-shadow: 0 0 25px rgba(0,180,255,.25);
-    }
-
-    /* NEWSLETTER */
-    .newsletter {
-      background: linear-gradient(135deg, #0a0f1f, #05070a);
-      border: 1px solid var(--neon-blue);
-      border-radius: 12px;
-      padding: 40px;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(0,180,255,.2);
-    }
-
-    .newsletter input {
-      padding: 14px;
-      width: 260px;
-      max-width: 100%;
-      border-radius: 6px;
-      border: none;
-      margin-top: 15px;
-    }
-
-    .newsletter button {
-      margin-left: 10px;
-      padding: 14px 24px;
-      background: var(--neon-blue);
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 30px;
-      text-align: center;
-      background: #02040a;
-      border-top: 1px solid #0a1a2a;
-    }
-
-    footer a {
-      color: var(--neon-blue);
-      margin: 0 10px;
-      text-decoration: none;
-    }
-        /* BUY BUTTON */
-    .buy-btn {
-      display: block;
-      margin-top: 12px;
-      padding: 12px;
-      text-align: center;
-      border-radius: 6px;
-      border: 1px solid #00B4FF;
-      color: #00B4FF;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 0 15px rgba(0,180,255,.4);
-      transition: 0.3s;
-    }
-
-    .buy-btn:hover {
-      background: #00B4FF;
-      color: black;
-      box-shadow: 0 0 30px #00B4FF;
-    }
-
-  </style>
   <!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+  <style>
+    body {
+      background:#05070A;
+      color:white;
+      font-family:Arial;
+      padding:20px;
+    }
+    .buy-btn {
+      padding:10px 20px;
+      border:1px solid #00B4FF;
+      background:transparent;
+      color:#00B4FF;
+      cursor:pointer;
+      margin:5px;
+    }
+    input, textarea {
+      padding:10px;
+      margin:5px;
+      width:250px;
+    }
+  </style>
 </head>
 
 <body>
-<section id="auth" style="padding:40px; background:#0b0f1a; border:1px solid #00B4FF; border-radius:10px; margin:40px;">
-                               <h2>Join the HQ</h2>
 
-  <input id="authEmail" type="email" placeholder="Email" style="padding:10px; margin:5px; width:220px;">
-  <input id="authPassword" type="password" placeholder="Password" style="padding:10px; margin:5px; width:220px;">
+  <h1>2BANGUZHQ</h1>
 
-  <div style="margin-top:10px;">
-    <button onclick="signup()" class="buy-btn">Sign Up</button>
-    <button onclick="login()" class="buy-btn">Log In</button>
-    <button onclick="logout()" class="buy-btn">Log Out</button>
-  </div>
+  <!-- AUTH SECTION -->
+  <section>
+    <h2>Fan Login</h2>
 
-  <p id="authStatus" style="margin-top:10px; color:#00F6FF;"></p>
-</section>
+    <input id="authEmail" type="email" placeholder="Email">
+    <br>
+    <input id="authPassword" type="password" placeholder="Password">
+    <br>
 
-  <!-- HERO -->
-  <div class="hero">
-    <h1>2BANGUZHQ</h1>
-    <p>Sound From the City — Charlotte, North Carolina</p>
+    <button onclick="signUp()" class="buy-btn">Sign Up</button>
+    <button onclick="logIn()" class="buy-btn">Log In</button>
+    <button onclick="logOut()" class="buy-btn">Log Out</button>
 
-    <div class="hero-buttons">
-      <a href="#music" class="btn">▶ Listen Now</a>
-      <a href="#music" class="btn">💎 Buy Music ($1)</a>
-    </div>
-  </div>
+    <p id="authStatus"></p>
+  </section>
+
+  <hr>
 
   <!-- MUSIC -->
-  <section id="music">
-    <h2>Latest Music</h2>
-
-    <div class="music-grid">
-      <div class="track">
-  <h3>Track Title One</h3>
-
- <audio controls onplay="trackStream(Ain't Holding Me)">
-  <source src="song1.mp3" type="audio/mpeg">
-</audio>
-
-  <a 
-    href="https://buy.stripe.com/test_28E7sD9k00gs8MX4X73sI00">
-    💎 Buy for $1
-  </a>
-</div>
-
-      <div class="track">
-        <h3>Track Title Two</h3>
-        <audio controls style="width:100%;">
-          <source src="song2.mp3" type="audio/mpeg">
-        </audio>
-        <button>Buy for $1</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- VIDEO -->
-  <section class="video">
-    <h2>Latest Video</h2>
-    <iframe
-      src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-      allowfullscreen>
-    </iframe>
-  </section>
-
-  <!-- NEWSLETTER -->
   <section>
-    <div class="newsletter">
-      <h2>Join the HQ</h2>
-      <p>Get new music, merch & videos first.</p>
-      <br />
-      <input type="email" placeholder="Enter your email" />
-      <button>Sign Up</button>
-    </div>
+    <h2>Music</h2>
+
+    <audio controls onplay="trackStream('Track One')">
+      <source src="song1.mp3" type="audio/mpeg">
+    </audio>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2BANGUZHQ — Charlotte, NC</p>
-    <br />
-    <a href="#">TikTok</a>
-    <a href="#">Instagram</a>
-    <a href="#">Facebook</a>
-    <a href="#">YouTube</a>
-  </footer>
-<script>
-  // Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyDzebcGSAmhOknVGpLry6zCsawHpNGwMQ",
-    authDomain: "banguzhq.firebaseapp.com",
-    projectId: "banguzhq",
-    storageBucket: "banguzhq.firebasestorage.app",
-    messagingSenderId: "455321285766",
-    appId: "1:455321285766:web:e6cbe063d610f911ec0d07",
-    measurementId: "G-0L2JN9SXEL"
-  };
+  <hr>
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  <!-- COMMENTS -->
+  <section>
+    <h2>Comments</h2>
 
-  // Initialize Firestore
-  const db = firebase.firestore();
+    <textarea id="commentText" placeholder="Leave a comment..."></textarea><br>
+    <button onclick="postComment()" class="buy-btn">Post Comment</button>
 
-  // TEST WRITE (this creates the collection automatically)
-  db.collection("test").add({
-    status: "Firebase connected successfully",
-    time: new Date()
-  })
-  .then(() => console.log("🔥 Firestore connected"))
-  .catch(err => console.error("❌ Firestore error:", err));
-</script>
-<script>
-  function trackStream(songTitle) {
-    db.collection("streams").add({
-      song: songTitle,
-      time: new Date()
-    })
-    .then(() => console.log("🎧 Stream tracked:", songTitle))
-    .catch(err => console.error("❌ Stream error:", err));
-  }
+    <div id="commentsList"></div>
+  </section>
 
+  <!-- 🔥 FIREBASE + APP LOGIC -->
   <script>
-  function postComment() {
-    const user = firebase.auth().currentUser;
-    const text = document.getElementById("commentText").value;
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDzebcGSAmhOknVGpLry6zCsawHpNGwMQ",
+      authDomain: "banguzhq.firebaseapp.com",
+      projectId: "banguzhq",
+      storageBucket: "banguzhq.firebasestorage.app",
+      messagingSenderId: "455321285766",
+      appId: "1:455321285766:web:e6cbe063d610f911ec0d07"
+    };
 
-    if (!user) {
-      alert("Please log in to comment.");
-      return;
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+
+    /* AUTH */
+    function signUp() {
+      const email = authEmail.value;
+      const password = authPassword.value;
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(() => authStatus.innerText = "✅ Signed up")
+        .catch(err => authStatus.innerText = err.message);
     }
 
-    if (!text.trim()) return;
+    function logIn() {
+      const email = authEmail.value;
+      const password = authPassword.value;
 
-    db.collection("comments").add({
-      text: text,
-      user: user.email,
-      time: new Date()
-    }).then(() => {
-      document.getElementById("commentText").value = "";
-    });
-  }
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => authStatus.innerText = "🔥 Logged in")
+        .catch(err => authStatus.innerText = err.message);
+    }
 
-  function loadComments() {
-    db.collection("comments")
-      .orderBy("time", "desc")
-      .onSnapshot(snapshot => {
-        const list = document.getElementById("commentsList");
-        list.innerHTML = "";
-
-        snapshot.forEach(doc => {
-          const c = doc.data();
-          const div = document.createElement("div");
-          div.style.borderBottom = "1px solid #1A1F2B";
-          div.style.padding = "10px 0";
-          div.innerHTML = `<strong>${c.user}</strong><br>${c.text}`;
-          list.appendChild(div);
-        });
+    function logOut() {
+      auth.signOut().then(() => {
+        authStatus.innerText = "👋 Logged out";
       });
-  }
+    }
 
-  loadComments();
-</script>
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        authStatus.innerText = `🎧 Logged in as ${user.email}`;
+      }
+    });
+
+    /* STREAM TRACKING */
+    function trackStream(songTitle) {
+      db.collection("streams").add({
+        song: songTitle,
+        time: new Date()
+      });
+    }
+
+    /* COMMENTS */
+    function postComment() {
+      const user = auth.currentUser;
+      const text = commentText.value;
+
+      if (!user) {
+        alert("Please log in to comment.");
+        return;
+      }
+
+      if (!text.trim()) return;
+
+      db.collection("comments").add({
+        text: text,
+        user: user.email,
+        time: new Date()
+      }).then(() => {
+        commentText.value = "";
+      });
+    }
+
+    function loadComments() {
+      db.collection("comments")
+        .orderBy("time", "desc")
+        .onSnapshot(snapshot => {
+          commentsList.innerHTML = "";
+          snapshot.forEach(doc => {
+            const c = doc.data();
+            commentsList.innerHTML += `<p><strong>${c.user}</strong>: ${c.text}</p>`;
+          });
+        });
+    }
+
+    loadComments();
+  </script>
 
 </body>
 </html>
