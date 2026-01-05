@@ -1,73 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>2BANGUZHQ</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>2BANGUZHQ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
- <style>
+<style>
 :root{
   --neon:#00B4FF;
-  --cyan:#00F6FF;
   --silver:#C9CCD6;
   --dark:#05070A;
 }
 
 body{
   margin:0;
-  font-family: Arial, sans-serif;
+  font-family:Arial, sans-serif;
   color:white;
   background:
-    linear-gradient(rgba(5,7,10,.6), rgba(5,7,10,.6)),
+    linear-gradient(rgba(5,7,10,.55), rgba(5,7,10,.55)),
     url("charlotte-skyline.jpg") center/cover no-repeat fixed;
 }
 
-/* BIG BRAND TITLE */
+/* BRAND */
 .brand{
   text-align:center;
-  padding-top:90px;
+  padding:90px 20px 40px;
 }
-
 .brand h1{
   font-size:3.8rem;
   letter-spacing:6px;
   color:var(--silver);
-  text-shadow:
-    0 0 10px var(--neon),
-    0 0 30px rgba(0,180,255,.7);
+  text-shadow:0 0 12px var(--neon), 0 0 35px rgba(0,180,255,.7);
 }
 
 /* SOCIALS */
 .socials{
   display:flex;
   justify-content:center;
-  gap:24px;
-  margin-top:25px;
+  gap:22px;
+  margin-top:20px;
 }
-
 .socials a{
   color:var(--silver);
   text-decoration:none;
   font-weight:bold;
-  letter-spacing:1px;
-  text-shadow:0 0 10px rgba(0,180,255,.6);
 }
+.socials a:hover{ color:var(--neon); }
 
-.socials a:hover{
-  color:var(--neon);
-}
-
-/* CENTER AUTH */
+/* AUTH */
 .center-auth{
   text-align:center;
-  margin-top:50px;
 }
-
 .center-auth input{
   display:block;
   margin:12px auto;
@@ -90,18 +78,22 @@ body{
   cursor:pointer;
   font-weight:bold;
   box-shadow:0 0 20px rgba(0,180,255,.5);
-  transition:.3s;
 }
-
 .glow-btn:hover{
   background:var(--neon);
   color:black;
   box-shadow:0 0 45px var(--neon);
 }
 
-/* CONTENT SECTIONS */
+/* SECTIONS */
 .section{
   padding:80px 8%;
+}
+.section h2{
+  text-align:center;
+  letter-spacing:3px;
+  color:var(--silver);
+  text-shadow:0 0 12px rgba(0,180,255,.7);
 }
 
 .card{
@@ -113,30 +105,26 @@ body{
   box-shadow:0 0 35px rgba(0,180,255,.2);
 }
 
-.section h2{
-  text-align:center;
-  color:var(--silver);
-  letter-spacing:3px;
-  text-shadow:0 0 12px rgba(0,180,255,.7);
-}
-
-/* MUSIC PLAYER */
+/* MUSIC PLAYER (PRO SIZE) */
 .player{
   display:flex;
   gap:20px;
   align-items:center;
-  margin-top:20px;
 }
-
 .cover{
-  width:120px;
-  height:120px;
-  border-radius:14px;
+  width:110px;
+  height:110px;
+  border-radius:12px;
   object-fit:cover;
   box-shadow:0 0 25px rgba(0,180,255,.5);
 }
-
-audio{ width:100%; }
+.audio-wrap{
+  max-width:420px;
+}
+.audio-wrap audio{
+  width:100%;
+  height:36px;
+}
 
 /* COMMENTS */
 textarea{
@@ -148,145 +136,77 @@ textarea{
   border:1px solid rgba(0,180,255,.3);
   color:white;
 }
-
-  </style>
+</style>
 </head>
 
 <body>
 
+<!-- HERO -->
+<div class="brand">
   <h1>2BANGUZHQ</h1>
 
-  <!-- AUTH SECTION -->
-  <section>
-    <h2>Fan Login</h2>
+  <div class="socials">
+    <a href="https://instagram.com/YOURNAME" target="_blank">Instagram</a>
+    <a href="https://tiktok.com/@YOURNAME" target="_blank">TikTok</a>
+    <a href="https://x.com/YOURNAME" target="_blank">X</a>
+    <a href="https://youtube.com/@YOURNAME" target="_blank">YouTube</a>
+  </div>
+</div>
 
-    <input id="authEmail" type="email" placeholder="Email">
-    <br>
-    <input id="authPassword" type="password" placeholder="Password">
-    <br>
+<!-- FAN LOGIN -->
+<div class="center-auth">
+  <input id="authEmail" type="email" placeholder="Email">
+  <input id="authPassword" type="password" placeholder="Password">
 
-    <button onclick="signUp()" class="buy-btn">Sign Up</button>
-    <button onclick="logIn()" class="buy-btn">Log In</button>
-    <button onclick="logOut()" class="buy-btn">Log Out</button>
+  <button class="glow-btn" onclick="signUp()">Sign Up</button>
+  <button class="glow-btn" onclick="logIn()">Log In</button>
+  <button class="glow-btn" onclick="logOut()">Log Out</button>
 
-    <p id="authStatus"></p>
-  </section>
+  <p id="authStatus"></p>
+</div>
 
-  <hr>
+<!-- MUSIC -->
+<section class="section">
+  <h2>MUSIC</h2>
 
-  <!-- MUSIC -->
-  <section>
-    <h2>Music</h2>
+  <div class="card">
+    <div class="player">
+      <img src="cover.jpg" class="cover">
+      <div class="audio-wrap">
+        <strong>Track Title</strong>
+        <audio controls>
+          <source src="song1.mp3" type="audio/mpeg">
+        </audio>
+        <br>
+        <a class="glow-btn" href="YOUR_STRIPE_LINK" target="_blank">$1 BUY</a>
+      </div>
+    </div>
 
-    <audio controls onplay="trackStream('Track One')">
-      <source src="song1.mp3" type="audio/mpeg">
-    </audio>
-  </section>
+    <h3>Comments</h3>
+    <textarea placeholder="Comment on this track"></textarea>
+    <button class="glow-btn">Post</button>
+  </div>
+</section>
 
-  <hr>
+<!-- MERCH -->
+<section class="section">
+  <h2>MERCH</h2>
+  <div class="card">
+    <p>🔥 Exclusive merch dropping</p>
+    <button class="glow-btn">Shop Merch</button>
+  </div>
+</section>
 
-  <!-- COMMENTS -->
-  <section>
-    <h2>Comments</h2>
-
-    <textarea id="commentText" placeholder="Leave a comment..."></textarea><br>
-    <button onclick="postComment()" class="buy-btn">Post Comment</button>
-
-    <div id="commentsList"></div>
-  </section>
-
-  <!-- 🔥 FIREBASE + APP LOGIC -->
-  <script>
-    // Firebase config
-  const firebaseConfig = {
-  apiKey: "AIzaSyDzebcGSAmhOknVGpLry6zCsawHpNGoMNQ",
-  authDomain: "banguzhq.firebaseapp.com",
-  projectId: "banguzhq",
-  storageBucket: "banguzhq.appspot.com",
-  messagingSenderId: "455321285766",
-  appId: "1:455321285766:web:091deed20ef5873cec0d07",
-  measurementId: "G-RF12S35D0T"
-};
-
-    firebase.initializeApp(firebaseConfig);
-
-    const db = firebase.firestore();
-    const auth = firebase.auth();
-
-    /* AUTH */
-    function signUp() {
-      const email = authEmail.value;
-      const password = authPassword.value;
-
-      auth.createUserWithEmailAndPassword(email, password)
-        .then(() => authStatus.innerText = "✅ Signed up")
-        .catch(err => authStatus.innerText = err.message);
-    }
-
-    function logIn() {
-      const email = authEmail.value;
-      const password = authPassword.value;
-
-      auth.signInWithEmailAndPassword(email, password)
-        .then(() => authStatus.innerText = "🔥 Logged in")
-        .catch(err => authStatus.innerText = err.message);
-    }
-
-    function logOut() {
-      auth.signOut().then(() => {
-        authStatus.innerText = "👋 Logged out";
-      });
-    }
-
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        authStatus.innerText = `🎧 Logged in as ${user.email}`;
-      }
-    });
-
-    /* STREAM TRACKING */
-    function trackStream(songTitle) {
-      db.collection("streams").add({
-        song: songTitle,
-        time: new Date()
-      });
-    }
-
-    /* COMMENTS */
-    function postComment() {
-      const user = auth.currentUser;
-      const text = commentText.value;
-
-      if (!user) {
-        alert("Please log in to comment.");
-        return;
-      }
-
-      if (!text.trim()) return;
-
-      db.collection("comments").add({
-        text: text,
-        user: user.email,
-        time: new Date()
-      }).then(() => {
-        commentText.value = "";
-      });
-    }
-
-    function loadComments() {
-      db.collection("comments")
-        .orderBy("time", "desc")
-        .onSnapshot(snapshot => {
-          commentsList.innerHTML = "";
-          snapshot.forEach(doc => {
-            const c = doc.data();
-            commentsList.innerHTML += `<p><strong>${c.user}</strong>: ${c.text}</p>`;
-          });
-        });
-    }
-
-    loadComments();
-  </script>
+<!-- VIDEOS -->
+<section class="section">
+  <h2>VIDEOS</h2>
+  <div class="card">
+    <iframe width="100%" height="360"
+      src="https://www.youtube.com/embed/YOUTUBE_ID"
+      frameborder="0" allowfullscreen>
+    </iframe>
+  </div>
+</section>
 
 </body>
 </html>
