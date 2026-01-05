@@ -10,29 +10,59 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
-  <style>
-   body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    color:white;
-    background:
-     linear-gradient(rgba(5,7,10,.65), rgba(5,7,10,.65)),
-     url("charlotte-skyline.jpg") center/cover no-repeat fixed;
+ <style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  color:white;
+  background:
+    linear-gradient(rgba(5,7,10,.55), rgba(5,7,10,.55)),
+    url("charlotte-skyline.jpg") center/cover no-repeat fixed;
 }
 
-   .buy-btn {
-      padding:10px 20px;
-      border:1px solid #00B4FF;
-      background:transparent;
-      color:#00B4FF;
-      cursor:pointer;
-      margin:5px;
-    }
-    input, textarea {
-      padding:10px;
-      margin:5px;
-      width:250px;
-    }
+/* ADD IT RIGHT HERE ⬇️ */
+h1{ 
+  font-size:3rem;
+  letter-spacing:4px;
+  color:#C9CCD6;
+  text-shadow:
+    0 0 8px #00B4FF,
+    0 0 20px rgba(0,180,255,.6);
+}
+
+h2{
+  color:#C9CCD6;
+  letter-spacing:2px;
+  text-shadow:0 0 10px rgba(0,180,255,.6n );
+}
+
+.card{
+  background:rgba(11,18,32,.85);
+  border-radius:16px;
+  padding:24px;
+  margin-top:20px;
+  border:1px solid rgba(0,180,255,.25);
+  box-shadow:0 0 30px rgba(0,180,255,.2);
+}
+
+.buy-btn{
+  padding:12px 20px;
+  border-radius:8px;
+  border:1px solid #00B4FF;
+  background:transparent;
+  color:#00B4FF;
+  cursor:pointer;
+  font-weight:bold;
+  box-shadow:0 0 15px rgba(0,180,255,.4);
+  transition:.3s;
+}
+
+.buy-btn:hover{
+  background:#00B4FF;
+  color:black;
+  box-shadow:0 0 35px #00B4FF;
+}
+
   </style>
 </head>
 
