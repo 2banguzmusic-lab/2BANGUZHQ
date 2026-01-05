@@ -327,6 +327,47 @@
     .then(() => console.log("🎧 Stream tracked:", songTitle))
     .catch(err => console.error("❌ Stream error:", err));
   }
+
+  <script>
+  function postComment() {
+    const user = firebase.auth().currentUser;
+    const text = document.getElementById("commentText").value;
+
+    if (!user) {
+      alert("Please log in to comment.");
+      return;
+    }
+
+    if (!text.trim()) return;
+
+    db.collection("comments").add({
+      text: text,
+      user: user.email,
+      time: new Date()
+    }).then(() => {
+      document.getElementById("commentText").value = "";
+    });
+  }
+
+  function loadComments() {
+    db.collection("comments")
+      .orderBy("time", "desc")
+      .onSnapshot(snapshot => {
+        const list = document.getElementById("commentsList");
+        list.innerHTML = "";
+
+        snapshot.forEach(doc => {
+          const c = doc.data();
+          const div = document.createElement("div");
+          div.style.borderBottom = "1px solid #1A1F2B";
+          div.style.padding = "10px 0";
+          div.innerHTML = `<strong>${c.user}</strong><br>${c.text}`;
+          list.appendChild(div);
+        });
+      });
+  }
+
+  loadComments();
 </script>
 
 </body>
