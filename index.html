@@ -202,6 +202,10 @@
     }
 
   </style>
+  <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 </head>
 
 <body>
@@ -274,6 +278,32 @@
     <a href="#">Facebook</a>
     <a href="#">YouTube</a>
   </footer>
+<script>
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDzebcGSAmhOknVGpLry6zCsawHpNGwMQ",
+    authDomain: "banguzhq.firebaseapp.com",
+    projectId: "banguzhq",
+    storageBucket: "banguzhq.firebasestorage.app",
+    messagingSenderId: "455321285766",
+    appId: "1:455321285766:web:e6cbe063d610f911ec0d07",
+    measurementId: "G-0L2JN9SXEL"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Initialize Firestore
+  const db = firebase.firestore();
+
+  // TEST WRITE (this creates the collection automatically)
+  db.collection("test").add({
+    status: "Firebase connected successfully",
+    time: new Date()
+  })
+  .then(() => console.log("🔥 Firestore connected"))
+  .catch(err => console.error("❌ Firestore error:", err));
+</script>
 
 </body>
 </html>
