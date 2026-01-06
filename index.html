@@ -9,6 +9,31 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <title>2BANGUZHQ</title>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+  <!-- ✅ FIREBASE CONFIG GOES HERE -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDzebcGSAmhOknVGpLry6zCsawHpNGoMNQ",
+      authDomain: "banguzhq.firebaseapp.com",
+      projectId: "banguzhq",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+
+  <style>
+    /* your neon styles */
+  </style>
+</head>
 
 <style>
   .plays-counter{
@@ -348,6 +373,7 @@ textarea{
           doc.data().count || 0;
       }
     });
+  
 </script>
 
 <div class="socials">
