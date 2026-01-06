@@ -332,13 +332,21 @@ textarea{
     audio.src = file;
     audio.play();
 
-    // 🔥 COUNT PLAY (Firebase)
+    // 🔥 COUNT PLAY
     db.collection("stats").doc("plays").set({
       count: firebase.firestore.FieldValue.increment(1)
-    }, { merge: true });
+    }, { merge:true });
   }
+
+  // 🔥 LIVE TOTAL PLAYS (ADD IT RIGHT HERE)
+  db.collection("stats").doc("plays")
+    .onSnapshot(doc => {
+      if(doc.exists){
+        document.getElementById("totalPlays").textContent =
+          doc.data().count || 0;
+      }
+    });
 </script>
-</body>
 
 <div class="socials">
     <a href="https://instagram.com/@2banguz" target="_blank">Instagram</a>
