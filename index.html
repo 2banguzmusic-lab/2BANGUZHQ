@@ -311,19 +311,20 @@ textarea{
 </audio>
 
 <script>
-const audio = document.getElementById("audioPlayer");
-const playBtn = document.querySelector(".play-btn");
+  const audio = document.getElementById("audioPlayer");
 
-function togglePlay(){
-  if(audio.paused){
+  function playSong(file){
+    audio.src = file;
     audio.play();
-    playBtn.textContent = "⏸ PAUSE";
-  } else {
-    audio.pause();
-    playBtn.textContent = "▶ PLAY";
+
+    // 🔥 COUNT PLAY (Firebase)
+    db.collection("stats").doc("plays").set({
+      count: firebase.firestore.FieldValue.increment(1)
+    }, { merge: true });
   }
-}
- </script>
+</script>
+</body>
+
 <div class="socials">
     <a href="https://instagram.com/@2banguz" target="_blank">Instagram</a>
     <a href="https://tiktok.com/@nothnbutbanguz" target="_blank">TikTok</a>
