@@ -296,30 +296,24 @@ textarea{
   <!-- MUSIC / MERCH / VIDEOS HTML ABOVE -->
 
   <!-- 🔥 NEON MUSIC PLAYER SCRIPT -->
-  <script>
-    const audio = document.getElementById("audioPlayer");
-    const playBtn = document.querySelector(".play-btn");
-    const trackStatus = document.getElementById("trackStatus");
+  <audio id="audioPlayer">
+  <source src="song1.mp3" type="audio/mpeg">
+</audio>
 
-    function togglePlay(){
-      if(!audio || !playBtn) return;
+<script>
+const audio = document.getElementById("audioPlayer");
+const playBtn = document.querySelector(".play-btn");
 
-      audio.play().then(() => {
-        playBtn.textContent = "⏸ PAUSE";
-        trackStatus.textContent = "Now playing…";
-      }).catch((err) => {
-        trackStatus.textContent = "⚠️ Can’t play. Check song1.mp3 filename in GitHub.";
-        console.error(err);
-      });
+function togglePlay(){
+  if(audio.paused){
+    audio.play();
+    playBtn.textContent = "⏸ PAUSE";
+  } else {
+    audio.pause();
+    playBtn.textContent = "▶ PLAY";
+  }
+}
+ </script>
 
-      if(!audio.paused && playBtn.textContent.includes("PAUSE")){
-        audio.pause();
-        playBtn.textContent = "▶ PLAY";
-        trackStatus.textContent = "Paused";
-      }
-    }
-  </script>
-
- 
 </body>
 </html>
