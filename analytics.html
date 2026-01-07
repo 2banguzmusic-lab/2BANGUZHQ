@@ -94,23 +94,21 @@ pre{
     }
   });
 
-  // CITY
-  db.collection("analytics").doc("cities").onSnapshot(doc=>{
-    document.getElementById("cities").innerText =
-      JSON.stringify(doc.data() || {}, null, 2);
-  });
+// 📍 CITY
+db.collection("analytics").doc("cities").set({
+  Charlotte: firebase.firestore.FieldValue.increment(1)
+},{merge:true});
 
-  // STATE
-  db.collection("analytics").doc("states").onSnapshot(doc=>{
-    document.getElementById("states").innerText =
-      JSON.stringify(doc.data() || {}, null, 2);
-  });
+// 🗺️ STATE
+db.collection("analytics").doc("states").set({
+  NC: firebase.firestore.FieldValue.increment(1)
+},{merge:true});
 
-  // AGE
-  db.collection("analytics").doc("ages").onSnapshot(doc=>{
-    document.getElementById("ages").innerText =
-      JSON.stringify(doc.data() || {}, null, 2);
-  });
+// 🎂 AGE GROUP (placeholder)
+db.collection("analytics").doc("ages").set({
+  "18-34": firebase.firestore.FieldValue.increment(1)
+},{merge:true});
+
 </script>
 
 </body>
