@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>2BANGUZHQ Analytics</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<style>
+body{
+  background:#050008;
+  color:#C9CCD6;
+  font-family:Arial;
+  text-align:center;
+  padding:60px;
+}
+
+h1{
+  font-size:2.8rem;
+  text-shadow:0 0 20px #00B4FF;
+}
+
+.card{
+  margin:30px auto;
+  max-width:700px;
+  padding:25px;
+  border-radius:16px;
+  background:rgba(11,18,32,.9);
+  border:1px solid rgba(0,180,255,.3);
+  box-shadow:0 0 40px rgba(0,180,255,.3);
+}
+</style>
+</head>
+
+<body>
+
+<h1>📊 2BANGUZHQ Analytics</h1>
+
+<div class="card">
+  <h2>Total Plays</h2>
+  <h1 id="totalPlays">0</h1>
+</div>
+
+<div class="card">
+  <h2>Listeners by City</h2>
+  <div id="cityData">Loading…</div>
+</div>
+
+<div class="card">
+  <h2>Listeners by State</h2>
+  <div id="stateData">Loading…</div>
+</div>
+
+<div class="card">
+  <h2>Age Groups</h2>
+  <div id="ageData">Loading…</div>
+</div>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDzebcGSAmhOknVGpLry6zCsawHpNGoMNQ",
+  authDomain: "banguzhq.firebaseapp.com",
+  projectId: "banguzhq",
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// 🔒 LOCK PAGE TO YOU
+auth.onAuthStateChanged(user => {
+  if(!user || user.email !== 2Banguzmusic@gmail.com){
+    window.location.href = "/";
+  }
+});
+
+// 🔥 TOTAL PLAYS
+db.collection("stats").doc("plays")
+.onSnapshot(doc=>{
+  if(doc.exists){
+    document.getElementById("totalPlays").textContent =
+      doc.data().count || 0;
+  }
+});
+
+// 📍 CITY
+db.collection("analytics").doc("cities")
+.onSnapshot(doc=>{
+  document.getElementById("cityData").innerText =
+    JSON.stringify(doc.data(), null, 2);
+});
+
+// 🗺️ STATE
+db.collection("analytics").doc("states")
+.onSnapshot(doc=>{
+  document.getElementById("stateData").innerText =
+    JSON.stringify(doc.data(), null, 2);
+});
+
+// 🎂 AGE
+db.collection("analytics").doc("ages")
+.onSnapshot(doc=>{
+  document.getElementById("ageData").innerText =
+    JSON.stringify(doc.data(), null, 2);
+});
+</script>
+
+</body>
+</html>
