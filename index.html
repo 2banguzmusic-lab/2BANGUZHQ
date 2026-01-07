@@ -359,7 +359,7 @@ textarea{
     audio.src = file;
     audio.play();
 
-    // 🔥 COUNT PLAY
+    // 🔥 TOTAL PLAY COUNT
     db.collection("stats").doc("plays").set({
       count: firebase.firestore.FieldValue.increment(1)
     }, { merge:true });
