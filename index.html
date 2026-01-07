@@ -359,21 +359,11 @@ textarea{
     audio.src = file;
     audio.play();
 
-    // 🔥 TOTAL PLAY COUNT
+    // 🔥 TOTAL PLAYS (PUBLIC)
     db.collection("stats").doc("plays").set({
       count: firebase.firestore.FieldValue.increment(1)
     }, { merge:true });
   }
-
-  // 🔥 LIVE TOTAL PLAYS (ADD IT RIGHT HERE)
-  db.collection("stats").doc("plays")
-    .onSnapshot(doc => {
-      if(doc.exists){
-        document.getElementById("totalPlays").textContent =
-          doc.data().count || 0;
-      }
-    });
-  
 </script>
 
 <div class="socials">
