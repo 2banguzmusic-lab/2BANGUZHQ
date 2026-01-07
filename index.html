@@ -5,387 +5,122 @@
 <title>2BANGUZHQ</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Firebase SDKs -->
+<!-- 🔥 FIREBASE SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<head>
-  <meta charset="UTF-8">
-  <title>2BANGUZHQ</title>
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<!-- 🔥 FIREBASE CONFIG (USE YOUR REAL VALUES) -->
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDzebcGSAmhOknVGpLry6zCsawHpNGoMNQ",
+    authDomain: "banguzhq.firebaseapp.com",
+    projectId:  "banguzhq",
+  };
 
-  <!-- ✅ FIREBASE CONFIG GOES HERE -->
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDzebcGSAmhOknVGpLry6zCsawHpNGoMNQ",
-      authDomain: "banguzhq.firebaseapp.com",
-      projectId: "banguzhq",
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-  </script>
-
-  <style>
-    /* your neon styles */
-  </style>
-</head>
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
 
 <style>
-  .plays-counter{
-  margin-top:40px;
-  text-align:center;
-  font-size:1.4rem;
-  letter-spacing:2px;
-  color:#C9CCD6;
-  text-shadow:
-    0 0 10px #00B4FF,
-    0 0 25px rgba(0,180,255,.6);
-}
-
-:root{
-  --neon:#00B4FF;
-  --silver:#C9CCD6;
-  --dark:#05070A;
-}
-
 body{
-  margin:0;
-  font-family:Arial, sans-serif;
+  background:#05070A;
   color:white;
-  background:
-    linear-gradient(rgba(5,7,10,.55), rgba(5,7,10,.55)),
-    url("charlotte-skyline.jpg") center/cover no-repeat fixed;
+  font-family:Arial;
+  text-align:center;
+  padding:40px;
 }
 
 /* BRAND */
-.brand{
-  text-align:center;
-  padding:90px 20px 40px;
-}
 .brand h1{
-  font-size:6.0rem;  /* 👈 THIS LINE */
-  letter-spacing:15px;
-  color:var(--silver);
-  text-shadow:0 0 12px var(--neon), 0 0 35px rgba(0,180,255,.6);
+  font-size:4.2rem;
+  letter-spacing:6px;
+  color:#C9CCD6;
+  text-shadow:0 0 12px #00B4FF, 0 0 35px rgba(0,180,255,.6);
 }
 
-/* SOCIALS */
-.socials{
-  display:flex;
-  justify-content:center;
-  gap:22px;
-  margin-top:20px;
-}
-.socials a{
-  color:var(--silver);
-  text-decoration:none;
-  font-weight:bold;
-}
-.socials a:hover{ color:var(--neon); }
-
-/* AUTH */
-.center-auth{
-  text-align:center;
-}
-.center-auth input{
-  display:block;
-  margin:12px auto;
-  padding:14px;
-  width:260px;
-  border-radius:10px;
-  border:1px solid rgba(0,180,255,.4);
-  background:#070B14;
-  color:white;
-}
-
-.glow-btn{
-  padding:14px 30px;
-  margin:10px;
-  border-radius:12px;
-  border:1px solid var(--neon);
-  background:transparent;
-  color:var(--neon);
-  font-size:1.1rem;
-  cursor:pointer;
-  font-weight:bold;
-  box-shadow:0 0 20px rgba(0,180,255,.5);
-}
-.glow-btn:hover{
-  background:var(--neon);
-  color:black;
-  box-shadow:0 0 45px var(--neon);
-}
-
-/* SECTIONS */
-.section{
-  padding:80px 8%;
-}
-.section h2{
-  text-align:center;
-  letter-spacing:3px;
-  color:var(--silver);
-  text-shadow:0 0 12px rgba(0,180,255,.7);
-}
-
-.card{
-  background:rgba(11,18,32,.85);
-  border-radius:18px;
-  padding:30px;
-  margin-top:30px;
-  border:1px solid rgba(0,180,255,.25);
-  box-shadow:0 0 35px rgba(0,180,255,.2);
-}
-
-/* MUSIC PLAYER (PRO SIZE) */
-.player{
-  display:flex;
-  gap:20px;
-  align-items:center;
-}
-.cover{
-  width:110px;
-  height:110px;
-  border-radius:12px;
-  object-fit:cover;
-  box-shadow:0 0 25px rgba(0,180,255,.5);
-}
-.audio-wrap{
-  max-width:420px;
-}
-.audio-wrap audio{
-  width:100%;
-  height:36px;
-}
-
-/* COMMENTS */
-textarea{
-  width:100%;
-  margin-top:15px;
-  padding:12px;
-  border-radius:10px;
-  background:#070B14;
-  border:1px solid rgba(0,180,255,.3);
-  color:white;
-}
- .music-card{
-  display:flex;
-  align-items:center;
-  gap:20px;
-
-  /* 🔒 SIZE LOCK */
+/* MUSIC CARD */
+.music-card{
   max-width:520px;
-  width:100%;
-
+  margin:40px auto;
+  padding:20px;
   background:rgba(11,18,32,.9);
   border-radius:16px;
-  padding:20px;
-
   border:1px solid rgba(0,180,255,.35);
   box-shadow:0 0 30px rgba(0,180,255,.25);
-
-  margin:20px auto; /* centers it */
-}
-
-.cover-art{
-  width:100px;
-  height:100px;
-  border-radius:12px;
-  object-fit:cover;
-  flex-shrink:0;
-}
-
-.track-info{ flex:1; }
-
-.track-info h3{
-  margin:0 0 12px;
-  letter-spacing:2px;
-  color:#C9CCD6;
-  text-shadow:0 0 10px #00B4FF;
-}
-
-.controls{
-  display:flex;
-  gap:14px;
-  align-items:center;
 }
 
 .play-btn{
-  padding:12px 26px;
+  padding:10px 22px;
   border-radius:10px;
   border:1px solid #00B4FF;
   background:transparent;
   color:#00B4FF;
   font-weight:bold;
   cursor:pointer;
-  box-shadow:0 0 20px rgba(0,180,255,.5);
-  transition:.3s;
+  box-shadow:0 0 18px rgba(0,180,255,.4);
 }
-
 .play-btn:hover{
   background:#00B4FF;
   color:black;
-  box-shadow:0 0 40px #00B4FF;
 }
 
-/* Make BUY match too (if your buy-btn style isn't already present) */
-.buy-btn{
-  padding:12px 26px;
-  border-radius:10px;
-  border:1px solid #00B4FF;
-  background:transparent;
-  color:#00B4FF;
-  text-decoration:none;
-  font-weight:bold;
-  box-shadow:0 0 20px rgba(0,180,255,.35);
-  transition:.3s;
-}
-.buy-btn:hover{
-  background:#00B4FF;
-  color:black;
-  box-shadow:0 0 40px #00B4FF;
+/* TOTAL PLAYS */
+.plays-counter{
+  margin-top:30px;
+  font-size:1.4rem;
+  letter-spacing:2px;
+  color:#C9CCD6;
+  text-shadow:0 0 10px #00B4FF, 0 0 25px rgba(0,180,255,.6);
 }
 
+/* HIDE DEFAULT PLAYER */
+audio{ display:none; }
 </style>
-  
 </head>
 
 <body>
 
-<!-- HERO -->
 <div class="brand">
   <h1>2BANGUZHQ</h1>
-
-  <div class="socials">
-    <a href="https://instagram.com/@2banguz" target="_blank">Instagram</a>
-    <a href="https://tiktok.com/@nothnbutbanguz" target="_blank">TikTok</a>
-    <a href="https://x.com/@2banguz" target="_blank">X</a>
-    <a href="https://youtube.com/@2banguztvbreaker" target="_blank">YouTube</a>
-  </div>
 </div>
 
-<!-- FAN LOGIN -->
-<div class="center-auth">
-  <input id="authEmail" type="email" placeholder="Email">
-  <input id="authPassword" type="password" placeholder="Password">
-
-  <button class="glow-btn" onclick="signUp()">Sign Up</button>
-  <button class="glow-btn" onclick="logIn()">Log In</button>
-  <button class="glow-btn" onclick="logOut()">Log Out</button>
-
-  <p id="authStatus"></p>
+<div class="music-card">
+  <h2>Track One</h2>
+  <button class="play-btn" onclick="playSong('song1.mp3')">▶ PLAY</button>
 </div>
 
-<!-- MUSIC -->
-  <div class="plays-counter">
+<div class="plays-counter">
   🔥 TOTAL PLAYS: <span id="totalPlays">0</span>
 </div>
 
-<section class="music-section">
-
-  <div class="music-card">
-    <img src="cover.jpg" class="cover-art">
-
-    <div class="track-info">
-      <h3>Ain't Holding Me</h3>
-      <p id="trackStatus"></p>
-
-      <div class="controls">
-        <button class="play-btn" onclick="playSong('song1.mp3')">▶ PLAY</button>
-        <a class="buy-btn" href=https://buy.stripe.com/test_14A9AL53K9R20grdtD3sI01>$1 BUY</a>
-      </div>
-    </div>
-  </div>
-  <div class="plays-counter">
-  🔥 TOTAL PLAYS: <span id="totalPlays">0</span>
-</div>
-  <div class="music-card">
-    <img src="cover.jpg" class="cover-art">
-
-    <div class="track-info">
-      <h3>Savage</h3>
-
-      <div class="controls">
-        <button class="play-btn" onclick="playSong('song2.mp3')">▶ PLAY</button>
-        <a class="buy-btn" href=https://buy.stripe.com/test_14A9AL53K9R20grdtD3sI01>$1 BUY</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ONE audio player ONLY -->
-<audio id="audioPlayer">
-  <source src="song1.mp3" type="audio/mpeg">
+<!-- 🎧 ONE AUDIO PLAYER ONLY -->
+<audio id="audioPlayer" preload="auto">
+  <source src="./song1.mp3" type="audio/mpeg">
 </audio>
 
-
-<!-- MERCH -->
-<section class="section">
-  <h2>MERCH</h2>
-  <div class="card">
-    <p>🔥 Exclusive merch dropping</p>
-    <button class="glow-btn">Shop Merch</button>
-  </div>
-  <!-- 🔥 YOUTUBE SECTION -->
-<section class="card youtube-section">
-  <h2>CAROLINA VS RAMS @BANK OF AMERICA</h2>
-        <h2>PINKY'S BAR & GRILL</h2>
-
-  <!-- VIDEOS -->
-<section class="section">
-  <h2>🎥 Official 2BANGUZHQ Visuals 🎥</h2>
-  <div class="card">
-    <iframe width="100%" height="360"
-      src="https://youtube.com/embed/i5wZ2mHfrhA"
-      frameborder="0" allowfullscreen>
-    </iframe>
-  </div>
-</section>
-  <!-- MUSIC / MERCH / VIDEOS HTML ABOVE -->
-
-  <!-- 🔥 NEON MUSIC PLAYER SCRIPT -->
-  <audio id="audioPlayer">
-  <source src="song1.mp3" type="audio/mpeg">
-</audio>
-
+<!-- 🔥 WORKING PLAY + COUNT + LIVE UPDATE -->
 <script>
   const audio = document.getElementById("audioPlayer");
 
   function playSong(file){
-    audio.src = file;
-    audio.play();
-  // 📍 CITY (temporary manual value)
-  db.collection("analytics").doc("cities").set({
-    Charlotte: firebase.firestore.FieldValue.increment(1)
-  }, { merge:true });
+    audio.src = "./" + file;
+    audio.play().catch(console.error);
 
-  // 🗺️ STATE
-  db.collection("analytics").doc("states").set({
-    NC: firebase.firestore.FieldValue.increment(1)
-  }, { merge:true });
-
-  // 🎂 AGE GROUP (placeholder)
-  db.collection("analytics").doc("ages").set({
-    "18-34": firebase.firestore.FieldValue.increment(1)
-  }, { merge:true });
-}
-
-    // 🔥 TOTAL PLAYS (PUBLIC)
+    // ✅ INCREMENT TOTAL PLAYS
     db.collection("stats").doc("plays").set({
       count: firebase.firestore.FieldValue.increment(1)
     }, { merge:true });
   }
+
+  // ✅ LIVE TOTAL PLAYS LISTENER
+  db.collection("stats").doc("plays")
+    .onSnapshot(doc => {
+      if(doc.exists){
+        document.getElementById("totalPlays").textContent =
+          doc.data().count || 0;
+      }
+    });
 </script>
 
-<div class="socials">
-    <a href="https://instagram.com/@2banguz" target="_blank">Instagram</a>
-    <a href="https://tiktok.com/@nothnbutbanguz" target="_blank">TikTok</a>
-    <a href="https://x.com/@2banguz" target="_blank">X</a>
-    <a href="https://youtube.com/@2banguztvbreaker" target="_blank">YouTube</a>
-  </div>
 </body>
 </html>
