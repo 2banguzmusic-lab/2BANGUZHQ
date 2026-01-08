@@ -5,87 +5,118 @@
   <title>2BANGUZHQ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Firebase SDKs -->
+  <!-- Firebase SDKs (keep in <head>) -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
   <style>
-    body {
-      background:#05070A;
-      color:white;
-      font-family:Arial;
-      padding:20px;
+    :root{
+      --black:#05070A;
+      --neon:#00B4FF;
+      --cyan:#00F6FF;
+      --steel:#1A1F2B;
+      --silver:#C9CCD6;
     }
-    .buy-btn {
-      padding:10px 20px;
-      border:1px solid #00B4FF;
+    body{ background:var(--black); color:white; font-family:Arial; margin:0; padding:0; }
+    header{ padding:30px 8%; border-bottom:1px solid #0a1a2a; }
+    h1{ margin:0; color:var(--silver); text-shadow:0 0 18px var(--neon); letter-spacing:3px; }
+    section{ padding:30px 8%; }
+    .card{ background:var(--steel); border:1px solid transparent; border-radius:12px; padding:18px; margin-top:12px; }
+    .card:hover{ border-color:var(--neon); box-shadow:0 0 18px rgba(0,180,255,.25); }
+    .buy-btn{
+      display:inline-block;
+      padding:10px 16px;
+      border:1px solid var(--neon);
       background:transparent;
-      color:#00B4FF;
+      color:var(--neon);
       cursor:pointer;
-      margin:5px;
+      border-radius:8px;
+      text-decoration:none;
+      margin:6px 6px 0 0;
+      box-shadow:0 0 14px rgba(0,180,255,.25);
     }
-    input, textarea {
-      padding:10px;
-      margin:5px;
-      width:250px;
+    .buy-btn:hover{ background:var(--neon); color:black; box-shadow:0 0 28px var(--neon); }
+    input, textarea{
+      width:100%;
+      max-width:420px;
+      padding:12px;
+      margin-top:10px;
+      border-radius:8px;
+      border:1px solid #0a1a2a;
+      background:#070b14;
+      color:white;
+      outline:none;
     }
+    textarea{ min-height:90px; }
+    #authStatus{ margin-top:10px; color:var(--cyan); }
+    .muted{ opacity:.85; }
   </style>
 </head>
 
 <body>
 
-  <h1>2BANGUZHQ</h1>
+  <header>
+    <h1>2BANGUZHQ</h1>
+    <p class="muted">Charlotte, NC • Fan hub + music</p>
+  </header>
 
-  <!-- AUTH SECTION -->
-  <section>
+  <!-- AUTH -->
+  <section id="auth">
     <h2>Fan Login</h2>
+    <div class="card">
+      <input id="authEmail" type="email" placeholder="Email" autocomplete="email">
+      <input id="authPassword" type="password" placeholder="Password" autocomplete="current-password">
 
-    <input id="authEmail" type="email" placeholder="Email">
-    <br>
-    <input id="authPassword" type="password" placeholder="Password">
-    <br>
+      <div>
+        <button class="buy-btn" onclick="signUp()">Sign Up</button>
+        <button class="buy-btn" onclick="logIn()">Log In</button>
+        <button class="buy-btn" onclick="logOut()">Log Out</button>
+      </div>
 
-    <button onclick="signUp()" class="buy-btn">Sign Up</button>
-    <button onclick="logIn()" class="buy-btn">Log In</button>
-    <button onclick="logOut()" class="buy-btn">Log Out</button>
-
-    <p id="authStatus"></p>
+      <div id="authStatus"></div>
+    </div>
   </section>
-
-  <hr>
 
   <!-- MUSIC -->
-  <section>
+  <section id="music">
     <h2>Music</h2>
+    <div class="card">
+      <h3 style="margin:0 0 10px; color:var(--cyan);">Track One</h3>
 
-    <audio controls onplay="trackStream('Track One')">
-      <source src="song1.mp3" type="audio/mpeg">
-    </audio>
+      <audio controls onplay="trackStream('Track One')" style="width:100%;">
+        <source src="song1.mp3" type="audio/mpeg">
+      </audio>
+
+      <!-- Stripe link button (optional) -->
+      <!-- <a class="buy-btn" href="YOUR_STRIPE_LINK" target="_blank">💎 Buy for $1</a> -->
+    </div>
   </section>
-
-  <hr>
 
   <!-- COMMENTS -->
-  <section>
+  <section id="comments">
     <h2>Comments</h2>
-
-    <textarea id="commentText" placeholder="Leave a comment..."></textarea><br>
-    <button onclick="postComment()" class="buy-btn">Post Comment</button>
-
-    <div id="commentsList"></div>
+    <div class="card">
+      <textarea id="commentText" placeholder="Leave a comment..."></textarea>
+      <div>
+        <button class="buy-btn" onclick="postComment()">Post Comment</button>
+      </div>
+      <div id="commentsList" style="margin-top:16px;"></div>
+    </div>
   </section>
 
-  <!-- 🔥 FIREBASE + APP LOGIC -->
+  <!-- ALL JS GOES AT THE BOTTOM (ABOVE </body>) -->
   <script>
-    // Firebase config
+    // ✅ IMPORTANT: Replace this whole object with the EXACT config from:
+    // Firebase Console → Project settings → Your apps → Config
     const firebaseConfig = {
-      apiKey: "AIzaSyDzebcGSAmhOknVGpLry6zCsawHpNGwMQ",
-      authDomain: "banguzhq.firebaseapp.com",
-      projectId: "banguzhq",
-      storageBucket: "banguzhq.firebasestorage.app",
-      messagingSenderId: "455321285766",
-      appId: "1:455321285766:web:e6cbe063d610f911ec0d07"
+      apiKey: "PASTE_REAL_API_KEY_HERE",
+      authDomain: "PASTE_REAL_AUTH_DOMAIN_HERE",
+      projectId: "PASTE_REAL_PROJECT_ID_HERE",
+      storageBucket: "PASTE_REAL_STORAGE_BUCKET_HERE",
+      messagingSenderId: "PASTE_REAL_SENDER_ID_HERE",
+      appId: "PASTE_REAL_APP_ID_HERE"
+      // measurementId optional
     };
 
     firebase.initializeApp(firebaseConfig);
@@ -93,49 +124,49 @@
     const db = firebase.firestore();
     const auth = firebase.auth();
 
-    /* AUTH */
+    // -------- AUTH ----------
     function signUp() {
-      const email = authEmail.value;
-      const password = authPassword.value;
+      const email = document.getElementById("authEmail").value.trim();
+      const password = document.getElementById("authPassword").value;
 
       auth.createUserWithEmailAndPassword(email, password)
-        .then(() => authStatus.innerText = "✅ Signed up")
-        .catch(err => authStatus.innerText = err.message);
+        .then(() => document.getElementById("authStatus").innerText = "✅ Signed up!")
+        .catch(err => document.getElementById("authStatus").innerText = err.message);
     }
 
     function logIn() {
-      const email = authEmail.value;
-      const password = authPassword.value;
+      const email = document.getElementById("authEmail").value.trim();
+      const password = document.getElementById("authPassword").value;
 
       auth.signInWithEmailAndPassword(email, password)
-        .then(() => authStatus.innerText = "🔥 Logged in")
-        .catch(err => authStatus.innerText = err.message);
+        .then(() => document.getElementById("authStatus").innerText = "🔥 Logged in!")
+        .catch(err => document.getElementById("authStatus").innerText = err.message);
     }
 
     function logOut() {
       auth.signOut().then(() => {
-        authStatus.innerText = "👋 Logged out";
+        document.getElementById("authStatus").innerText = "👋 Logged out";
       });
     }
 
     auth.onAuthStateChanged(user => {
       if (user) {
-        authStatus.innerText = `🎧 Logged in as ${user.email}`;
+        document.getElementById("authStatus").innerText = `🎧 Logged in as ${user.email}`;
       }
     });
 
-    /* STREAM TRACKING */
+    // -------- STREAMS ----------
     function trackStream(songTitle) {
       db.collection("streams").add({
         song: songTitle,
         time: new Date()
-      });
+      }).catch(err => console.error("Stream error:", err));
     }
 
-    /* COMMENTS */
+    // -------- COMMENTS ----------
     function postComment() {
       const user = auth.currentUser;
-      const text = commentText.value;
+      const text = document.getElementById("commentText").value;
 
       if (!user) {
         alert("Please log in to comment.");
@@ -149,18 +180,23 @@
         user: user.email,
         time: new Date()
       }).then(() => {
-        commentText.value = "";
-      });
+        document.getElementById("commentText").value = "";
+      }).catch(err => console.error("Comment error:", err));
     }
 
     function loadComments() {
       db.collection("comments")
         .orderBy("time", "desc")
         .onSnapshot(snapshot => {
-          commentsList.innerHTML = "";
+          const list = document.getElementById("commentsList");
+          list.innerHTML = "";
           snapshot.forEach(doc => {
             const c = doc.data();
-            commentsList.innerHTML += `<p><strong>${c.user}</strong>: ${c.text}</p>`;
+            const row = document.createElement("div");
+            row.style.borderBottom = "1px solid #0a1a2a";
+            row.style.padding = "10px 0";
+            row.innerHTML = `<strong style="color:var(--cyan)">${c.user}</strong><br>${c.text}`;
+            list.appendChild(row);
           });
         });
     }
@@ -170,3 +206,4 @@
 
 </body>
 </html>
+
