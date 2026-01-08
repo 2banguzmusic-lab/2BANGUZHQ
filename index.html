@@ -4,6 +4,17 @@
   <meta charset="UTF-8" />
   <title>2BANGUZHQ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<header>
+  <h1>2BANGUZHQ</h1>
+  <p>Charlotte, North Carolina</p>
+
+  <div class="socials">
+    <a href="https://www.tiktok.com/@YOURNAME" target="_blank">TikTok</a>
+    <a href="https://www.instagram.com/YOURNAME" target="_blank">Instagram</a>
+    <a href="https://www.facebook.com/YOURNAME" target="_blank">Facebook</a>
+    <a href="https://www.youtube.com/@YOURNAME" target="_blank">YouTube</a>
+  </div>
+</header>
 
   <!-- Firebase SDKs (keep in <head>) -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -11,47 +22,131 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
   <style>
-    :root{
-      --black:#05070A;
-      --neon:#00B4FF;
-      --cyan:#00F6FF;
-      --steel:#1A1F2B;
-      --silver:#C9CCD6;
-    }
-    body{ background:var(--black); color:white; font-family:Arial; margin:0; padding:0; }
-    header{ padding:30px 8%; border-bottom:1px solid #0a1a2a; }
-    h1{ margin:0; color:var(--silver); text-shadow:0 0 18px var(--neon); letter-spacing:3px; }
-    section{ padding:30px 8%; }
-    .card{ background:var(--steel); border:1px solid transparent; border-radius:12px; padding:18px; margin-top:12px; }
-    .card:hover{ border-color:var(--neon); box-shadow:0 0 18px rgba(0,180,255,.25); }
-    .buy-btn{
-      display:inline-block;
-      padding:10px 16px;
-      border:1px solid var(--neon);
-      background:transparent;
-      color:var(--neon);
-      cursor:pointer;
-      border-radius:8px;
-      text-decoration:none;
-      margin:6px 6px 0 0;
-      box-shadow:0 0 14px rgba(0,180,255,.25);
-    }
-    .buy-btn:hover{ background:var(--neon); color:black; box-shadow:0 0 28px var(--neon); }
-    input, textarea{
-      width:100%;
-      max-width:420px;
-      padding:12px;
-      margin-top:10px;
-      border-radius:8px;
-      border:1px solid #0a1a2a;
-      background:#070b14;
-      color:white;
-      outline:none;
-    }
-    textarea{ min-height:90px; }
-    #authStatus{ margin-top:10px; color:var(--cyan); }
-    .muted{ opacity:.85; }
-  </style>
+:root{
+  --black:#05070A;
+  --dark:#0B1220;
+  --neon:#00B4FF;
+  --cyan:#00F6FF;
+  --silver:#C9CCD6;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family: 'Arial', sans-serif;
+  color:white;
+  background:
+    linear-gradient(rgba(5,7,10,.88), rgba(5,7,10,.88)),
+    url("charlotte-skyline.jpg") center/cover no-repeat fixed;
+}
+
+/* HEADER */
+header{
+  padding:60px 8%;
+  text-align:center;
+  border-bottom:1px solid rgba(0,180,255,.2);
+}
+
+header h1{
+  margin:0;
+  font-size:3rem;
+  color:var(--silver);
+  letter-spacing:4px;
+  text-shadow:
+    0 0 10px var(--neon),
+    0 0 30px rgba(0,180,255,.6);
+}
+
+header p{
+  margin-top:10px;
+  color:var(--cyan);
+  letter-spacing:2px;
+}
+
+/* SECTIONS */
+section{
+  padding:50px 8%;
+}
+
+.card{
+  background:rgba(11,18,32,.85);
+  border-radius:16px;
+  padding:24px;
+  margin-top:20px;
+  border:1px solid rgba(0,180,255,.2);
+  box-shadow:0 0 30px rgba(0,180,255,.15);
+}
+
+h2{
+  color:var(--silver);
+  letter-spacing:2px;
+  text-shadow:0 0 10px rgba(0,180,255,.6);
+}
+
+/* BUTTONS */
+.buy-btn{
+  display:inline-block;
+  margin-top:12px;
+  padding:12px 18px;
+  border-radius:8px;
+  border:1px solid var(--neon);
+  color:var(--neon);
+  background:transparent;
+  cursor:pointer;
+  font-weight:bold;
+  box-shadow:0 0 15px rgba(0,180,255,.4);
+  transition:.3s;
+}
+
+.buy-btn:hover{
+  background:var(--neon);
+  color:black;
+  box-shadow:0 0 30px var(--neon);
+}
+
+/* INPUTS */
+input, textarea{
+  width:100%;
+  max-width:420px;
+  padding:12px;
+  margin-top:12px;
+  border-radius:8px;
+  border:1px solid rgba(0,180,255,.25);
+  background:#070B14;
+  color:white;
+}
+
+/* SOCIALS */
+.socials{
+  display:flex;
+  gap:18px;
+  justify-content:center;
+  margin-top:25px;
+}
+
+.socials a{
+  color:var(--silver);
+  text-decoration:none;
+  font-weight:bold;
+  letter-spacing:1px;
+  transition:.3s;
+}
+
+.socials a:hover{
+  color:var(--neon);
+  text-shadow:0 0 10px var(--neon);
+}
+
+/* COMMENTS */
+.comment{
+  border-bottom:1px solid rgba(0,180,255,.2);
+  padding:12px 0;
+}
+.comment strong{
+  color:var(--cyan);
+}
+</style>
 </head>
 
 <body>
