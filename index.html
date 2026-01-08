@@ -1,173 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>2BANGUZHQ</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>2BANGUZHQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- 🔥 FIREBASE SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <style>
+    :root {
+      --black: #05070A;
+      --neon-blue: #00B4FF;
+      --cyan: #00F6FF;
+      --silver: #C9CCD6;
+      --steel: #1A1F2B;
+    }
 
-<!-- 🔥 FIREBASE CONFIG (USE YOUR REAL VALUES) -->
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyDzebcGSAmhOknVGpLry6zCsawHpNGoMNQ",
-    authDomain: "banguzhq.firebaseapp.com",
-    projectId:  "banguzhq",
-  };
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-</script>
+    body {
+      background: var(--black);
+      color: white;
+    }
 
-<style>
-body{
-  background:#05070A;
-  color:white;
-  font-family:Arial;
-  text-align:center;
-  padding:40px;
-}
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(5,7,10,.85), rgba(5,7,10,.95)),
+        url("https://images.unsplash.com/photo-1545420331-25b0f5b7f7e1?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px;
+    }
 
-/* BRAND */
-.brand h1{
-  font-size:4.2rem;
-  letter-spacing:6px;
-  color:#C9CCD6;
-  text-shadow:0 0 12px #00B4FF, 0 0 35px rgba(0,180,255,.6);
-}
+    .hero h1 {
+      font-size: 3.2rem;
+      letter-spacing: 4px;
+      color: var(--silver);
+      text-shadow: 0 0 20px var(--neon-blue);
+    }
 
-<style>
-  /* MUSIC CARD */
-.music-card{
-  max-width:520px;
-  margin:40px auto;
-  padding:20px;
-  background:rgba(11,18,32,.9);
-  border-radius:16px;
-  border:1px solid rgba(0,180,255,.35);
-  box-shadow:0 0 30px rgba(0,180,255,.25);
-}
-<section class="youtube-section">
-  <h2>🎬 Videos</h2>
+    .hero p {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      color: var(--cyan);
+      opacity: 0.9;
+    }
 
-  <div class="youtube-grid">
+    .hero-buttons {
+      margin-top: 35px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-    <div class="yt-video">
-      <iframe
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-    </div>
+    .btn {
+      padding: 14px 28px;
+      border: 1px solid var(--neon-blue);
+      background: transparent;
+      color: var(--neon-blue);
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(0,180,255,.3);
+    }
 
-    <div class="yt-video">
-      <iframe
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        frameborder="0"
-        allowfullscreen>
-      </iframe>
-    </div>
+    .btn:hover {
+      background: var(--neon-blue);
+      color: black;
+      box-shadow: 0 0 30px var(--neon-blue);
+    }
 
-  </div>
-</section>
- 
-<section class="youtube-section">
-  <h2>🎥 Videos</h2>
+    /* SECTIONS */
+    section {
+      padding: 80px 8%;
+    }
 
-  <div class="youtube-grid">
-    <div class="yt-video">
-      <iframe
-        src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-        frameborder="0"
-        allowfullscreen>
-      </iframe>
-    </div>
+    h2 {
+      color: var(--silver);
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px var(--neon-blue);
+    }
 
-    <div class="yt-video">
-      <iframe
-        src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2"
-        frameborder="0"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </div>
-</section>
+    /* MUSIC */
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
 
-.play-btn{
-  padding:10px 22px;
-  border-radius:10px;
-  border:1px solid #00B4FF;
-  background:transparent;
-  color:#00B4FF;
-  font-weight:bold;
-  cursor:pointer;
-  box-shadow:0 0 18px rgba(0,180,255,.4);
-}
-.play-btn:hover{
-  background:#00B4FF;
-  color:black;
-}
+    .track {
+      background: var(--steel);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      transition: 0.3s;
+    }
 
-/* TOTAL PLAYS */
-.plays-counter{
-  margin-top:30px;
-  font-size:1.4rem;
-  letter-spacing:2px;
-  color:#C9CCD6;
-  text-shadow:0 0 10px #00B4FF, 0 0 25px rgba(0,180,255,.6);
-}
+    .track:hover {
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 20px rgba(0,180,255,.3);
+    }
 
-/* HIDE DEFAULT PLAYER */
-audio{ display:none; }
-</style>
+    .track h3 {
+      margin-bottom: 10px;
+      color: var(--cyan);
+    }
+
+    .track button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px;
+      background: transparent;
+      border: 1px solid var(--neon-blue);
+      color: var(--neon-blue);
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    /* VIDEO */
+    .video iframe {
+      width: 100%;
+      height: 420px;
+      border-radius: 10px;
+      border: none;
+      box-shadow: 0 0 25px rgba(0,180,255,.25);
+    }
+
+    /* NEWSLETTER */
+    .newsletter {
+      background: linear-gradient(135deg, #0a0f1f, #05070a);
+      border: 1px solid var(--neon-blue);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(0,180,255,.2);
+    }
+
+    .newsletter input {
+      padding: 14px;
+      width: 260px;
+      max-width: 100%;
+      border-radius: 6px;
+      border: none;
+      margin-top: 15px;
+    }
+
+    .newsletter button {
+      margin-left: 10px;
+      padding: 14px 24px;
+      background: var(--neon-blue);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 30px;
+      text-align: center;
+      background: #02040a;
+      border-top: 1px solid #0a1a2a;
+    }
+
+    footer a {
+      color: var(--neon-blue);
+      margin: 0 10px;
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="brand">
-  <h1>2BANGUZHQ</h1>
-</div>
+  <!-- HERO -->
+  <div class="hero">
+    <h1>2BANGUZHQ</h1>
+    <p>Sound From the City — Charlotte, North Carolina</p>
 
-<div class="music-card">
-  <h2>Track One</h2>
-  <button class="play-btn" onclick="playSong('song1.mp3')">▶ PLAY</button>
-</div>
+    <div class="hero-buttons">
+      <a href="#music" class="btn">▶ Listen Now</a>
+      <a href="#music" class="btn">💎 Buy Music ($1)</a>
+    </div>
+  </div>
 
-<div class="plays-counter">
-  🔥 TOTAL PLAYS: <span id="totalPlays">0</span>
-</div>
+  <!-- MUSIC -->
+  <section id="music">
+    <h2>Latest Music</h2>
 
-<!-- 🎧 ONE AUDIO PLAYER ONLY -->
-<audio id="audioPlayer" preload="auto">
-  <source src="./song1.mp3" type="audio/mpeg">
-</audio>
+    <div class="music-grid">
+      <div class="track">
+        <h3>Track Title One</h3>
+        <audio controls style="width:100%;">
+          <source src="song1.mp3" type="audio/mpeg">
+        </audio>
+        <button>Buy for $1</button>
+      </div>
 
-<!-- 🔥 WORKING PLAY + COUNT + LIVE UPDATE -->
-<script>
-  const audio = document.getElementById("audioPlayer");
+      <div class="track">
+        <h3>Track Title Two</h3>
+        <audio controls style="width:100%;">
+          <source src="song2.mp3" type="audio/mpeg">
+        </audio>
+        <button>Buy for $1</button>
+      </div>
+    </div>
+  </section>
 
-  function playSong(file){
-    audio.src = "./" + file;
-    audio.play().catch(console.error);
+  <!-- VIDEO -->
+  <section class="video">
+    <h2>Latest Video</h2>
+    <iframe
+      src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+      allowfullscreen>
+    </iframe>
+  </section>
 
-    // ✅ INCREMENT TOTAL PLAYS
-    db.collection("stats").doc("plays").set({
-      count: firebase.firestore.FieldValue.increment(1)
-    }, { merge:true });
-  }
+  <!-- NEWSLETTER -->
+  <section>
+    <div class="newsletter">
+      <h2>Join the HQ</h2>
+      <p>Get new music, merch & videos first.</p>
+      <br />
+      <input type="email" placeholder="Enter your email" />
+      <button>Sign Up</button>
+    </div>
+  </section>
 
-  // ✅ LIVE TOTAL PLAYS LISTENER
-  db.collection("stats").doc("plays")
-    .onSnapshot(doc => {
-      if(doc.exists){
-        document.getElementById("totalPlays").textContent =
-          doc.data().count || 0;
-      }
-    });
-</script>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2BANGUZHQ — Charlotte, NC</p>
+    <br />
+    <a href="#">TikTok</a>
+    <a href="#">Instagram</a>
+    <a href="#">Facebook</a>
+    <a href="#">YouTube</a>
+  </footer>
 
 </body>
 </html>
